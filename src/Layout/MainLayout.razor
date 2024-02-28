@@ -1,11 +1,19 @@
 ﻿@inherits LayoutComponentBase
 
+<FluentDesignTheme @bind-Mode="@Mode" OfficeColor="OfficeColor.Access" StorageName="theme" />
+
 <FluentMainLayout>
     <Header>
         App
     </Header>
 
     <Body>
+        <FluentGridItem>
+            <FluentSelect Label="Theme"
+                          Width="250px"
+                          Items="@(Enum.GetValues<DesignThemeModes>())"
+                          @bind-SelectedOption="@Mode" />
+        </FluentGridItem>
         @Body
     </Body>
 </FluentMainLayout>
@@ -14,3 +22,7 @@
 <FluentDialogProvider />
 <FluentTooltipProvider />
 <FluentMessageBarProvider />
+
+@code {
+    public DesignThemeModes Mode { get; set; }
+}
